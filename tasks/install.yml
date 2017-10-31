@@ -1,7 +1,7 @@
 ---
 
 - name: install graphite packages
-  apt: name={{ item }} state=present update_cache=yes
+  apt: name={{ item }} state=present default_release=zesty update_cache=yes
   with_items:
     - graphite-web
     - graphite-carbon
