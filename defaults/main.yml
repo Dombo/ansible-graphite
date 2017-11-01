@@ -5,8 +5,8 @@ uwsgi_manage_service: True
 # Account
 graphite_admin_username: admin
 graphite_admin_email: admin@admin.com
-graphite_uid:
-graphite_gid:
+graphite_uid: _graphite
+graphite_gid: _graphite
 graphite_conf_dir: '/etc/graphite'
 graphite_datadir: '/var/lib/graphite'
 graphite_logdir: '/var/log/graphite'
