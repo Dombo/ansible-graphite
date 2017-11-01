@@ -1,23 +1,23 @@
 ---
 
-# - name: Add Zesty repositories to prevent python-openssl breaking system
-#   apt_repository:
-#     repo: "{{ item }}"
-#     state: present
-#   with_items:
-#     - "deb http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu/ zesty main restricted universe multiverse"
-#     - "deb-src http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu/ zesty main restricted universe multiverse"
-#   register: graphite_repo
+- name: Add Zesty repositories to prevent python-openssl breaking system
+  apt_repository:
+    repo: "{{ item }}"
+    state: present
+  with_items:
+    - "deb http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu/ zesty main restricted universe multiverse"
+    - "deb-src http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu/ zesty main restricted universe multiverse"
+  register: graphite_repo
 
-# - name: Specify default release for APT to reference
-#   shell: echo 'APT::Default-Release "xenial";' >> /etc/apt/apt.conf.d/01-ubuntu-release
+- name: Specify default release for APT to reference
+  shell: echo 'APT::Default-Release "xenial";' >> /etc/apt/apt.conf.d/01-ubuntu-release
 
-# - name: Update apt cache if repo was added.
-#   apt: update_cache=yes
-#   when: graphite_repo.changed
+- name: Update apt cache if repo was added.
+  apt: update_cache=yes
+  when: graphite_repo.changed
 
 - name: install graphite packages
-  apt: name={{ item }} state=present update_cache=yes
+  apt: name={{ item }} state=present default_release=zesty update_cache=yes
   with_items:
     - graphite-web
     - graphite-carbon
