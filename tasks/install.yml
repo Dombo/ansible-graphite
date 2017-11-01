@@ -27,7 +27,7 @@
   file: path={{item}} owner={{graphite_uid}} group={{graphite_gid}} follow=yes recurse=yes state=directory
   with_items:
     - "{{graphite_datadir}}"
-    - /var/log/graphite
+    - "{{graphite_logdir}}"
   when: graphite_uid or graphite_gid
 
 - name: start graphite carbon
