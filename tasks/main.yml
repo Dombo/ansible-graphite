@@ -16,7 +16,3 @@
 - include: uwsgi.yml
   when: graphite_manage_uwsgi
   tags: [graphite, uwsgi]
-
-# Cleanup
-- include: cleanup.yml
-  tags: [graphite]
