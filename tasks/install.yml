@@ -21,6 +21,8 @@
     - "{{graphite_datadir}}"
     - "{{graphite_logdir}}"
     - "{{graphite_datadir}}/whisper"
+    - "{{graphite_datadir}}/rrd"
+    - "{{graphite_datadir}}/ceres"
     - "{{graphite_datadir}}/conf"
 
 - name: set graphite user uid
