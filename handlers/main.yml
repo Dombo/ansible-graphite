@@ -1,7 +1,7 @@
 ---
 
 - name: graphite syncdb
-  command: graphite-manage syncdb --noinput
+  command: django-admin migrate --settings=graphite.settings auth && graphite-manage syncdb --noinput
   when: graphite_manage_db
 
 - name: uwsgi restart

@@ -15,12 +15,8 @@
   stat: path='/usr/share/graphite-web/.superuser_created'
   register: superuser_created
 
-- name: migrate part 1
-  command: django-admin migrate --settings=graphite.settings auth
-  when: superuser_created.stat.exists == False
-
-- name: migrate part 2
-  command: django-admin migrate --settings=graphite.settings
+- name: create schema
+  command: graphite-manage syncdb --noinput
   when: superuser_created.stat.exists == False
 
 - name: create superuser account
