@@ -21,6 +21,7 @@
     - "{{graphite_datadir}}"
     - "{{graphite_logdir}}"
     - "{{graphite_datadir}}/whisper"
+    - "{{graphite_datadir}}/conf"
 
 - name: set graphite user uid
   user: name='_graphite' uid={{ graphite_uid }} state=present
