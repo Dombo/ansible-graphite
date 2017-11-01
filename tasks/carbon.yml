@@ -3,6 +3,9 @@
 # Carbon
 - name: deploy webapp configuration file
   template: src=local_settings.py.j2 dest=/etc/graphite/local_settings.py owner=root group=root mode=0644 backup=yes
+
+- name: migrate django auth
+  command: django-admin migrate --settings=graphite.settings auth
   notify: graphite syncdb
 
 - meta: flush_handlers
