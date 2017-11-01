@@ -25,6 +25,11 @@
   template: src=storage-aggregation.conf.j2 dest=/etc/carbon/storage-aggregation.conf mode=0644 owner=root group=root
   notify: carbon restart
 
+- name: ensure carbon directories exist
+  file: path={{item}} owner={{graphite_uid}} group={{graphite_gid}} follow=yes recurse=yes state=directory
+  with_items:
+    - "{{carbon_logdir}}"
+
 - name: start carbon-cache
   service: name=carbon-cache state=started enabled=yes
   changed_when: False

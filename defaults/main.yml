@@ -10,6 +10,7 @@ graphite_gid:
 graphite_conf_dir: '/etc/graphite'
 graphite_datadir: '/var/lib/graphite'
 graphite_logdir: '/var/log/graphite'
+carbon_logdir: '/var/log/carbon'
 
 # MySQL/MariaDB
 graphite_manage_db: true
