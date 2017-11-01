@@ -15,6 +15,13 @@
 
 - meta: flush_handlers
 
+- name: ensure graphite directories exist
+  file: path={{item}} owner={{graphite_uid}} group={{graphite_gid}} follow=yes recurse=yes state=directory
+  with_items:
+    - "{{graphite_datadir}}"
+    - "{{graphite_logdir}}"
+    - "{{graphite_datadir}}/whisper"
+
 - name: set graphite user uid
   user: name='_graphite' uid={{ graphite_uid }} state=present
   when: graphite_uid
