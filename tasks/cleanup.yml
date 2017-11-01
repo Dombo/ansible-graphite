@@ -1,0 +1,17 @@
+---
+
+- name: Add Zesty repositories to prevent python-openssl breaking system
+  apt_repository:
+    repo: "{{ item }}"
+    state: absent
+  with_items:
+    - "deb http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu/ zesty main restricted universe multiverse"
+    - "deb-src http://ap-southeast-2.ec2.archive.ubuntu.com/ubuntu/ zesty main restricted universe multiverse"
+  register: graphite_repo
+
+- name: Specify default release for APT to reference
+  shell: rm /etc/apt/apt.conf.d/01-ubuntu-release
+
+- name: Update apt cache if repo was added.
+  apt: update_cache=yes
+  when: graphite_repo.changed
