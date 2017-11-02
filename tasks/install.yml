@@ -20,6 +20,7 @@
   with_items:
     - "{{graphite_datadir}}"
     - "{{graphite_logdir}}"
+    - "{{carbon_logdir}}"
     - "{{graphite_datadir}}/whisper"
     - "{{graphite_datadir}}/rrd"
     - "{{graphite_datadir}}/ceres"
@@ -30,10 +31,14 @@
   with_items:
     - "{{graphite_datadir}}"
     - "{{graphite_logdir}}"
+    - "{{carbon_logdir}}"
     - "{{graphite_datadir}}/whisper"
     - "{{graphite_datadir}}/rrd"
     - "{{graphite_datadir}}/ceres"
     - "{{graphite_datadir}}/conf"
+
+- name: build the search index for graphite
+  command: graphite-build-search-index
 
 - name: start graphite carbon
   service: name=carbon-cache state=started

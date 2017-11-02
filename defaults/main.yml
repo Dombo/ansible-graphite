@@ -93,7 +93,7 @@ graphite_carbon:
     config:
       - STORAGE_DIR    = {{graphite_datadir}}/
       - CONF_DIR       = /etc/carbon/
-      - LOG_DIR        = /var/log/carbon/
+      - LOG_DIR        = {{carbon_logdir}}
       - PID_DIR        = /var/run/
       - LOCAL_DATA_DIR = {{graphite_datadir}}/whisper/
       - ENABLE_LOGROTATION = False
