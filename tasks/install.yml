@@ -41,4 +41,4 @@
   command: graphite-build-search-index
 
 - name: start graphite carbon
-  service: name=carbon-cache state=started
+  service: name=carbon-cache state=restarted

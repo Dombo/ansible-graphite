@@ -33,7 +33,7 @@
   notify: uwsgi restart
   when: ansible_distribution_release == 'jessie'
 
-- name: restart uwsgi
+- name: start uwsgi
   service: name=uwsgi state=restarted enabled=yes
 
 - meta: flush_handlers

@@ -31,6 +31,5 @@
     - "{{carbon_logdir}}"
 
 - name: start carbon-cache
-  service: name=carbon-cache state=started enabled=yes
-  changed_when: False
+  service: name=carbon-cache state=restarted enabled=yes
   when: graphite_manage_service
