@@ -34,7 +34,7 @@
   when: ansible_distribution_release == 'jessie'
 
 - name: start uwsgi
-  service: name=uwsgi state=started enabled=yes
+  service: name=uwsgi state=restarted enabled=yes
   changed_when: False
 
 - meta: flush_handlers
