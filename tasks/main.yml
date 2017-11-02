@@ -16,6 +16,3 @@
 - include: uwsgi.yml
   when: graphite_manage_uwsgi
   tags: [graphite, uwsgi]
-
-- name: restart uwsgi for workaround
-  service: name=uwsgi state=restarted enabled=yes
