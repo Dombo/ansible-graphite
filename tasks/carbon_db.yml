@@ -12,7 +12,7 @@
   changed_when: False
 
 - name: check if superuser and db have already been deployed
-  stat: path='/usr/share/graphite-web/.superuser_created'
+  stat: path='{{graphite_datadir}}/.superuser_created'
   register: superuser_created
 
 - name: create schema
@@ -25,14 +25,14 @@
 
 - name: set superuser password
   expect:
-  command: /usr/bin/graphite-manage changepassword {{ graphite_admin_username }}
-  responses:
-    Password: {{ graphite_admin_password }}
-    Password (again): {{ graphite_admin_password }}
+    command: /usr/bin/graphite-manage changepassword {{ graphite_admin_username }}
+    responses:
+      Password: '{{ graphite_admin_password }}'
+      Password (again): '{{ graphite_admin_password }}'
   when: superuser_created.stat.exists == False
 
 - name: create lock file
-  file: path="/usr/share/graphite-web/.superuser_created" state=touch
+  file: path="{{graphite_datadir}}/.superuser_created" state=touch
   when: superuser_created.stat.exists == False
 
 - meta: flush_handlers
