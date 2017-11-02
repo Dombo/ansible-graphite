@@ -24,7 +24,11 @@
   when: superuser_created.stat.exists == False
 
 - name: set superuser password
-  shell: "graphite-manage shell < /usr/lib/python2.7/dist-packages/django/contrib/auth/management/commands/createsuperuser.py"
+  expect:
+  command: /usr/bin/graphite-manage changepassword {{ graphite_admin_username }}
+  responses:
+    Password: {{ graphite_admin_password }}
+    Password (again): {{ graphite_admin_password }}
   when: superuser_created.stat.exists == False
 
 - name: create lock file

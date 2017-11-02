@@ -4,6 +4,7 @@ uwsgi_manage_service: True
 
 # Account
 graphite_admin_username: admin
+graphite_admin_password: password
 graphite_admin_email: admin@admin.com
 graphite_uid: _graphite
 graphite_gid: _graphite
