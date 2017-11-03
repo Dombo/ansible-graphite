@@ -12,7 +12,7 @@
   changed_when: False
 
 - name: check if superuser and db have already been deployed
-  stat: path='{{graphite_datadir}}/.superuser_created'
+  stat: path='/usr/share/graphite-web/.superuser_created'
   register: superuser_created
 
 - name: create schema
@@ -32,7 +32,7 @@
   when: superuser_created.stat.exists == False
 
 - name: create lock file
-  file: path="{{graphite_datadir}}/.superuser_created" state=touch
+  file: path="/usr/share/graphite-web/.superuser_created" state=touch
   when: superuser_created.stat.exists == False
 
 - meta: flush_handlers
